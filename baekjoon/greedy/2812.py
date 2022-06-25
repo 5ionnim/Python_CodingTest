@@ -1,23 +1,11 @@
-#2812 시간초과 
-num, delNum = map(int, input().split())
-tNumList = list(map(int, list(input())))
-bNum = 0
-while True:
-    if delNum == 0:
-        break
-    elif len(tNumList[bNum:]) == delNum:
-        tNumList = tNumList[:bNum]
-        break
-    tList = tNumList[bNum:bNum + delNum + 1]
-    maxN = max(tList)
-    i = tList.index(maxN)
-    if i == 0:
-        bNum += 1
-        continue
-    else :
-        for _ in range(i):
-            del tNumList[bNum]
-        bNum += 1
-        delNum -= i
-print("".join(list(map(str, tNumList))))
+#2812 크게 만들기
+N, K = map(int, input().split())
+nums = list(input())
+stack, dNum = [], K
+for i in range(N):
+    while stack and dNum and stack[-1]<nums[i]:
+        stack.pop()
+        dNum-=1
+    stack.append(nums[i])
+print(''.join(stack[:N-K]))
             
